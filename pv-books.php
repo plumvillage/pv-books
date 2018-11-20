@@ -209,10 +209,10 @@ class Walker_Books extends Walker_Category {
 function wpcf_create_temp_column($fields) {
   global $wpdb;
   $matches = 'A|An|The|La|Les';
-  $has_the = " CASE 
+  $has_the = " CASE
       WHEN $wpdb->posts.post_title regexp( '^($matches)[[:space:]]' )
-        THEN trim(substr($wpdb->posts.post_title from 4)) 
-      ELSE $wpdb->posts.post_title 
+        THEN trim(substr($wpdb->posts.post_title from 4))
+      ELSE $wpdb->posts.post_title
         END AS title2";
   if ($has_the) {
     $fields .= ( preg_match( '/^(\s+)?,/', $has_the ) ) ? $has_the : ", $has_the";
@@ -228,10 +228,10 @@ function wpcf_sort_by_temp_column ($orderby) {
   return $orderby;
 }
 
-add_action( 'pre_get_posts', 'my_change_sort_order'); 
+add_action( 'pre_get_posts', 'my_change_sort_order');
 function my_change_sort_order($query){
     if(is_post_type_archive( 'pv_book' )){
-     //If you wanted it for the archive of a custom post type use: 
+     //If you wanted it for the archive of a custom post type use:
        //Set the order ASC or DESC
 		add_filter('posts_fields', 'wpcf_create_temp_column');
 		add_filter('posts_orderby', 'wpcf_sort_by_temp_column');
@@ -239,5 +239,7 @@ function my_change_sort_order($query){
        $query->set( 'order', 'ASC' );
        //Set the orderby
        $query->set( 'orderby', 'title' );
+
+       $query->set( 'posts_per_page', '-1' );
     }
 };
