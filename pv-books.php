@@ -12,7 +12,7 @@ function create_post_type() {
     array(
       'labels' => array(
         'name' => __( 'Books' ),
-        'singular_name' => __( 'Books' ),
+        'singular_name' => __( 'Book' ),
         'menu_name' => __( 'Books' ),
         'not_found' => __( 'No books found' ),
         'not_found_in_trash' => __( 'No books found in the trash'),
