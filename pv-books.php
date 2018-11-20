@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Library
-Description: A plugin which adds the ability to add library features in wordpress
-Version: 0.1
+Description: Showcase books on your website.
+Version: 0.2
 Author: Maarten Hunink
 License: GPL2
 */
